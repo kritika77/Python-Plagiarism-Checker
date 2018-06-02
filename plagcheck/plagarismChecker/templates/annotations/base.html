@@ -1,0 +1,56 @@
+{% load staticfiles %}
+
+<html>
+	{% block head %}
+	<head>
+		<script>var BASELOCATION = "{{baselocation}}";</script>
+
+        <script src="{% static "annotations/js/jquery.min.js" %}"></script>
+        <script src="{% static "annotations/js/jquery-ui.min.js" %}"></script>
+
+        <script src="{% static "annotations/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "annotations/js/d3.min.js" %}"></script>
+
+        {% include "annotations/angular.html" %}
+
+
+        <script>
+        var GetURLParameters = function(){
+            var params = {};
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables  bgcolor="#E6E6FA"= sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                params[sParameterName[0]] = sParameterName[1];
+
+            }
+            return params;
+        }
+        </script>
+
+		
+        {% block extrahead %}
+        {% endblock %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PlagCheck {{ title }}</title>
+
+
+	</head>
+	{% endblock head %}
+
+	{% block body %}
+	<body bgcolor="#E6E6FA">
+		{% block header %}
+		{% include "annotations/header.html" %}
+		{% endblock header %}
+
+        <div class="main" align="center">
+		{% block main %}
+
+		{% endblock main %}
+        <div class="push"></div>
+        </div>
+        {% include "annotations/footer.html" %}
+	</body>
+	{% endblock body %}
+</html>

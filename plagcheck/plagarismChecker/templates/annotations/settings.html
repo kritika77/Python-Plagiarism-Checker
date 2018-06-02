@@ -1,0 +1,60 @@
+{% extends "annotations/base.html" %}
+{% load staticfiles %}
+{% url "sign_s3" %}
+{% block main %}
+
+<div class="container">
+     <div class="h2">Update your profile</div>
+
+    <form  action="#" method="post" enctype='multipart/form-data'>
+       {% csrf_token %}
+       {{ form.errors }}
+       {{ form.non_field_errors }}
+	<br>
+       <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" class="form-control" id="id_fullname" name="full_name" {% if full_name %}value="{{ full_name }}"{% endif %}">
+       </div>
+	<br>
+       <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="id_email" name="email" value="{{ email }}">
+       </div>
+	<br>
+       <span class="pull-left">
+       <input type="submit" class="btn btn-primary" value="Submit" />
+       </span>
+    </form>
+    <br><br><br>
+
+</div>
+<script src="{% static "annotations/js/spin.min.js" %}"></script>
+<script src="{% static "annotations/js/jquery.spin.js" %}"></script>
+<script type="text/javascript" >
+
+var opts = {
+          lines: 13 // The number of lines to draw
+        , length: 21 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 1 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#297CA6' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 62 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '75%' // Top position relative to parent
+        , left: '20%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+      };
+
+
+</script>
+{% endblock main %}
